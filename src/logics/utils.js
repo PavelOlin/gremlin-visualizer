@@ -6,6 +6,16 @@ const selectRandomField = (obj) => {
   return firstKey;
 };
 
+const selectField = (obj) => {
+  if (obj['subGraphType'] === 'SERVICE_TO_SERVICE') {
+    return 'serviceName';
+  }
+  if (obj['subGraphType'] === 'METHOD_TO_METHOD') {
+    return 'clusteredKey';
+  }
+  return selectRandomField(obj);
+}
+
 export const getDiffNodes = (newList, oldList) => {
   return _.differenceBy(newList, oldList, (node) => node.id);
 };
@@ -23,7 +33,7 @@ export const extractEdgesAndNodes = (nodeList, nodeLabels=[]) => {
   _.forEach(nodeList, (node) => {
     const type = node.label;
     if (!nodeLabelMap[type]) {
-      const field = selectRandomField(node.properties);
+      const field = selectField(node.properties);
       const nodeLabel = { type, field };
       nodeLabels.push(nodeLabel);
       nodeLabelMap[type] = field;
