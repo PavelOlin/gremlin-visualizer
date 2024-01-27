@@ -1,9 +1,9 @@
-import { ACTIONS } from '../constants';
+import { ACTIONS, SERVER_HOST } from '../constants';
 
 const initialState = {
-  host: 'localhost',
+  host: SERVER_HOST,
   port: '8182',
-  query: '',
+  query: 'g.V()',
   error: null
 };
 

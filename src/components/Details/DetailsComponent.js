@@ -153,13 +153,13 @@ class Details extends React.Component {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12}>
             <ExpansionPanel>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Query History</Typography>
-              </ExpansionPanelSummary>
+              {/*<ExpansionPanelSummary*/}
+              {/*  expandIcon={<ExpandMoreIcon />}*/}
+              {/*  aria-controls="panel1a-content"*/}
+              {/*  id="panel1a-header"*/}
+              {/*>*/}
+              {/*  <Typography>Query History</Typography>*/}
+              {/*</ExpansionPanelSummary>*/}
               <ExpansionPanelDetails>
                 <List dense={true}>
                   {this.generateList(this.props.queryHistory)}
