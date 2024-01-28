@@ -104,12 +104,27 @@ class Header extends React.Component {
           </TextField>
           <br />
           { this.isQueryBuilderEnabled() &&
-          <TextField value={this.props.queryBuilderService} onChange={(event => this.onServiceChanged(event.target.value))} select id="standard-basic" label="Direction" style={{width: '10%', padding: '5px'}}>
+          <TextField value={this.props.queryBuilderService} onChange={(event => this.onServiceChanged(event.target.value))} select id="standard-basic" label="Service" style={{width: '10%', padding: '5px'}}>
+            <MenuItem value="app-registry">app-registry</MenuItem>
             <MenuItem value="address-service">address-service</MenuItem>
             <MenuItem value="crpt-auth">crpt-auth</MenuItem>
             <MenuItem value="crpt-cryto">crpt-crypto</MenuItem>
+            <MenuItem value="crpt-delegation-registry">crpt-delegation-registry</MenuItem>
+            <MenuItem value="crpt-notification">crpt-notification</MenuItem>
+            <MenuItem value="crpt-nsi">crpt-nsi</MenuItem>
+            <MenuItem value="crpt-ogv-registry">crpt-ogv-registry</MenuItem>
             <MenuItem value="crpt-org-info">crpt-org-info</MenuItem>
+            <MenuItem value="crpt-prim">crpt-prim</MenuItem>
+            <MenuItem value="crpt-tn-ved">crpt-tn-ved</MenuItem>
+            <MenuItem value="doc-signer">doc-signer</MenuItem>
+            <MenuItem value="egais-service">egais-service</MenuItem>
             <MenuItem value="elk-processor">elk-processor</MenuItem>
+            <MenuItem value="gismt-administration">gismt-administration</MenuItem>
+            <MenuItem value="machine-reading-delegations">machine-reading-delegations</MenuItem>
+            <MenuItem value="lk-admin">lk-admin</MenuItem>
+            <MenuItem value="lp/facade">lp/facade</MenuItem>
+            <MenuItem value="mod-info">mod-info</MenuItem>
+            <MenuItem value="token-service">token-service</MenuItem>
             <MenuItem value="true-api">true-api</MenuItem>
             <MenuItem value="united-auth">united-auth</MenuItem>
           </TextField>
