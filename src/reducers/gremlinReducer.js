@@ -1,4 +1,5 @@
 import { ACTIONS, SERVER_HOST } from '../constants';
+import _ from 'lodash';
 
 const initialState = {
   host: SERVER_HOST,
