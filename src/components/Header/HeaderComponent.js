@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, TextField, Select, MenuItem, FormControlLabel, Switch }  from '@material-ui/core';
+import { Button, TextField, MenuItem, FormControlLabel, Switch }  from '@material-ui/core';
 import axios from 'axios';
 import { ACTIONS, QUERY_ENDPOINT, COMMON_GREMLIN_ERROR } from '../../constants';
 import { onFetchQuery } from '../../logics/actionHelper';
@@ -80,19 +80,31 @@ class Header extends React.Component {
     this.props.dispatch({ type: ACTIONS.SET_QUERY_BUILDER_TRACING_DIRECTION, payload: direction });
   }
 
+  isQueryBuilderEnabled() {
+    return this.props.queryType === 'builder';
+  }
+
+  isQueryRawEnabled() {
+    return this.props.queryType === 'raw';
+  }
+
+  isQueryBuilderTracingEnabled() {
+    return this.isQueryBuilderEnabled() && this.props.queryBuilderTracing === true;
+  }
+
   render(){
     return (
       <div className={'header'}>
         <form noValidate autoComplete="off">
-          <TextField value={this.props.host} onChange={(event => this.onHostChanged(event.target.value))} id="standard-basic" label="Host" style={{width: '10%'}} />
-          <TextField value={this.props.port} onChange={(event => this.onPortChanged(event.target.value))} id="standard-basic" label="Port" style={{width: '10%'}} />
-          <TextField value={this.props.queryType} onChange={(event => this.onQueryTypeChanged(event.target.value))} select id="standard-basic" label="Query type" style={{width: '10%'}}>
+          <TextField value={this.props.host} onChange={(event => this.onHostChanged(event.target.value))} id="standard-basic" label="Host" style={{width: '10%', padding: '5px'}} />
+          <TextField value={this.props.port} onChange={(event => this.onPortChanged(event.target.value))} id="standard-basic" label="Port" style={{width: '10%', padding: '5px'}} />
+          <TextField value={this.props.queryType} onChange={(event => this.onQueryTypeChanged(event.target.value))} select id="standard-basic" label="Query type" style={{width: '10%', padding: '5px'}}>
             <MenuItem value="raw">Raw</MenuItem>
             <MenuItem value="builder">Builder</MenuItem>
           </TextField>
           <br />
-          { this.props.queryType === 'builder' &&
-          <TextField value={this.props.queryBuilderService} onChange={(event => this.onServiceChanged(event.target.value))} select id="standard-basic" label="Direction" style={{width: '10%'}}>
+          { this.isQueryBuilderEnabled() &&
+          <TextField value={this.props.queryBuilderService} onChange={(event => this.onServiceChanged(event.target.value))} select id="standard-basic" label="Direction" style={{width: '10%', padding: '5px'}}>
             <MenuItem value="address-service">address-service</MenuItem>
             <MenuItem value="crpt-auth">crpt-auth</MenuItem>
             <MenuItem value="crpt-cryto">crpt-crypto</MenuItem>
@@ -102,34 +114,35 @@ class Header extends React.Component {
             <MenuItem value="united-auth">united-auth</MenuItem>
           </TextField>
           }
-          { this.props.queryType === 'builder' &&
+          { this.isQueryBuilderEnabled() &&
           <FormControlLabel
             control={
               <Switch checked={this.props.queryBuilderTracing} onChange={() => { this.onTracingChanged(!this.props.queryBuilderTracing); }} value="physics" color="primary" />
             }
             label="Tracing"
+            style={{width: 'auto', padding: '5px'}}
           />
           }
-          { this.props.queryType === 'builder' &&
-          <TextField value={this.props.queryBuilderTracingSteps} onChange={(event => this.onTracingStepsChanged(event.target.value))} id="standard-basic" label="Steps" style={{width: '10%'}} />
+          { this.isQueryBuilderTracingEnabled() &&
+          <TextField value={this.props.queryBuilderTracingSteps} onChange={(event => this.onTracingStepsChanged(event.target.value))} id="standard-basic" label="Steps" style={{width: '10%', padding: '5px'}} />
           }
-          { this.props.queryType === 'builder' &&
-          <TextField value={this.props.queryBuilderTracingDirection} onChange={(event => this.onTracingDirectionChanged(event.target.value))} select id="standard-basic" label="Direction" style={{width: '10%'}}>
+          { this.isQueryBuilderTracingEnabled() &&
+          <TextField value={this.props.queryBuilderTracingDirection} onChange={(event => this.onTracingDirectionChanged(event.target.value))} select id="standard-basic" label="Direction" style={{width: '10%', padding: '5px'}}>
             <MenuItem value="in">In</MenuItem>
             <MenuItem value="out">Out</MenuItem>
             <MenuItem value="both">Both</MenuItem>
           </TextField>
           }
           <br />
-          { this.props.queryType === 'raw' &&
-          <TextField value={this.props.query} onChange={(event => this.onQueryChanged(event.target.value))} id="standard-basic" label="raw gremlin query" style={{width: '60%'}} />
+          { this.isQueryRawEnabled() &&
+          <TextField value={this.props.query} onChange={(event => this.onQueryChanged(event.target.value))} id="standard-basic" label="raw gremlin query" style={{width: '60%', padding: '5px'}} />
           }
-          <Button variant="contained" color="primary" onClick={this.sendQuery.bind(this)} style={{width: '150px'}} >Execute</Button>
+          <Button variant="contained" color="primary" onClick={this.sendQuery.bind(this)} style={{width: '150px', padding: '5px'}} >Execute</Button>
           {/*<Button variant="outlined" color="secondary" onClick={this.clearGraph.bind(this)} style={{width: '150px'}} >Clear Graph</Button>*/}
         </form>
 
         <br />
-        <div style={{color: 'red'}}>{this.props.error}</div>
+        <div style={{color: 'red', padding: '5px'}}>{this.props.error}</div>
       </div>
 
     );
