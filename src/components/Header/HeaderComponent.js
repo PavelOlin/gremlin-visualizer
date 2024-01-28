@@ -86,13 +86,13 @@ class Header extends React.Component {
         <form noValidate autoComplete="off">
           <TextField value={this.props.host} onChange={(event => this.onHostChanged(event.target.value))} id="standard-basic" label="Host" style={{width: '10%'}} />
           <TextField value={this.props.port} onChange={(event => this.onPortChanged(event.target.value))} id="standard-basic" label="Port" style={{width: '10%'}} />
-          <Select value={this.props.queryType} onChange={(event => this.onQueryTypeChanged(event.target.value))} id="standard-basic" label="Query type" style={{width: '10%'}}>
+          <TextField value={this.props.queryType} onChange={(event => this.onQueryTypeChanged(event.target.value))} select id="standard-basic" label="Query type" style={{width: '10%'}}>
             <MenuItem value="raw">Raw</MenuItem>
             <MenuItem value="builder">Builder</MenuItem>
-          </Select>
+          </TextField>
           <br />
           { this.props.queryType === 'builder' &&
-          <Select value={this.props.queryBuilderService} onChange={(event => this.onServiceChanged(event.target.value))} id="standard-basic" label="Direction" style={{width: '10%'}}>
+          <TextField value={this.props.queryBuilderService} onChange={(event => this.onServiceChanged(event.target.value))} select id="standard-basic" label="Direction" style={{width: '10%'}}>
             <MenuItem value="address-service">address-service</MenuItem>
             <MenuItem value="crpt-auth">crpt-auth</MenuItem>
             <MenuItem value="crpt-cryto">crpt-crypto</MenuItem>
@@ -100,7 +100,7 @@ class Header extends React.Component {
             <MenuItem value="elk-processor">elk-processor</MenuItem>
             <MenuItem value="true-api">true-api</MenuItem>
             <MenuItem value="united-auth">united-auth</MenuItem>
-          </Select>
+          </TextField>
           }
           { this.props.queryType === 'builder' &&
           <FormControlLabel
@@ -114,11 +114,11 @@ class Header extends React.Component {
           <TextField value={this.props.queryBuilderTracingSteps} onChange={(event => this.onTracingStepsChanged(event.target.value))} id="standard-basic" label="Steps" style={{width: '10%'}} />
           }
           { this.props.queryType === 'builder' &&
-          <Select value={this.props.queryBuilderTracingDirection} onChange={(event => this.onTracingDirectionChanged(event.target.value))} id="standard-basic" label="Direction" style={{width: '10%'}}>
+          <TextField value={this.props.queryBuilderTracingDirection} onChange={(event => this.onTracingDirectionChanged(event.target.value))} select id="standard-basic" label="Direction" style={{width: '10%'}}>
             <MenuItem value="in">In</MenuItem>
             <MenuItem value="out">Out</MenuItem>
             <MenuItem value="both">Both</MenuItem>
-          </Select>
+          </TextField>
           }
           <br />
           { this.props.queryType === 'raw' &&
