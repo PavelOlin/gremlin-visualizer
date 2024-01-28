@@ -30,7 +30,8 @@ export const reducer =  (state=initialState, action)=>{
       return { ...state, queryBuilderService: action.payload, error: null }
     }
     case ACTIONS.SET_QUERY_BUILDER_TRACING: {
-      return { ...state, queryBuilderTracing: action.payload, error: null }
+      const tracing = _.get(action, 'payload', true);
+      return { ...state, queryBuilderTracing: tracing, error: null }
     }
     case ACTIONS.SET_QUERY_BUILDER_TRACING_STEPS: {
       return { ...state, queryBuilderTracingSteps: action.payload, error: null }

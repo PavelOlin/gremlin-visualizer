@@ -45,7 +45,7 @@ The Docker image can then be run by calling `docker run` and exposing the necess
 
 ```sh
 # if you built the image yourself
-docker run --rm -d -p 3000:3000 -p 3001:3001 --name=gremlin-visualizer --network=host gremlin-visualizer:latest
+docker run --rm -d -p 3000:3000 -p 3001:3001 --name=gremlin-visualizer3 --network=host visualizer:builder-panel
 # if you downloaded from Docker Hub
 docker run --rm -d -p 3000:3000 -p 3001:3001 --name=gremlin-visualizer --network=host prabushitha/gremlin-visualizer:latest
 ```

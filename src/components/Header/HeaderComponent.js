@@ -102,7 +102,7 @@ class Header extends React.Component {
           </Select>
           <FormControlLabel
               control={
-                <Switch checked={this.props.queryBuilderTracing} onChange={(event => this.onTracingChanged(event.target.value))} value="physics" color="primary" />
+                <Switch checked={this.props.queryBuilderTracing} onChange={() => { this.onTracingChanged(!this.props.queryBuilderTracing); }} value="physics" color="primary" />
               }
               label="Tracing"
           />
